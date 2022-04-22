@@ -6,6 +6,7 @@ const route = (app) => {
   try {
     app.route(routeName).get(controller.get);
     app.route(`${routeName}/:id`).get(controller.getId);
+    app.route(routeName).post(controller.postClient);
   }
   catch (err) {
     console.log(`Erro ao executar API: ${err.message}`);

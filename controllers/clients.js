@@ -22,6 +22,12 @@ const controller = {
       res.status(200).json(response);
     });
   },
+  postClient(req, res){
+
+    console.log("Requisição POST - Cliente");
+    sqlite.insertClient(req.body.nome);
+    res.status(204);
+  }
 };
 
 export default controller;

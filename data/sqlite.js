@@ -26,7 +26,7 @@ export function selectAll(cb) {
 }
 
 export function selectId(id, cb) {
-  db.all(`SELECT * FROM clients WHERE id = ${id}`, (err, rows) => {
+  db.all("SELECT * FROM clients WHERE id = ?", id, (err, rows) => {
     if (rows.length == 0) {
       var retorno = { id: 0, nome: null };
       return cb(retorno);
@@ -38,4 +38,13 @@ export function selectId(id, cb) {
   });
 }
 
-export default { selectAll, selectId };
+export function insertClient(nome) {
+  db.all("INSERT INTO clients(name) VALUES(?)", nome, (err) => {
+    if (err) {
+      console.log(err.message);
+    }
+    console.log("Linha adicionada!");
+  });
+}
+
+export default { selectAll, selectId, insertClient };
